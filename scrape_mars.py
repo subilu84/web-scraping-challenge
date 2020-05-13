@@ -65,25 +65,24 @@ def scrape():
     html = browser.html
     soup = bs(html, 'html.parser')
 
-    title_list = []
-    img_url_list = []
-    for name in soup.body.find_all('h3'):
-        title_list.append(name.text)
-        browser.click_link_by_partial_text(name.text[0:6])
-        time.sleep(1)
+    title = []
+    img = []
+    for i in soup.body.find_all('h3'):
+        title.append(i.text)
+        browser.click_link_by_partial_text(i.text[0:6])
+        time.sleep(2)
         browser.click_link_by_partial_text('Sample')
         browser.windows[1].is_current=True
         html = browser.html
         soup = bs(html, 'html.parser')
-        img_url_list.append(soup.img.get('src'))
+        img.append(soup.img.get('src'))
         browser.windows[1].close()
         browser.back()
-    
-        time.sleep(1)
-    hemisphere_image_urls =[]
-    for i in range(0,4):
-        myDict = {"title":title_list[i],"img_url":img_url_list[i]}
-        hemisphere_image_urls.append(myDict)
+        time.sleep(2)
+        hemisphere_image_urls =[]
+    for x in range(0,4):
+        mydict = {"title":title[x],"img_url":img[x]}
+        hemisphere_image_urls.append(mydict)
    
        
 
