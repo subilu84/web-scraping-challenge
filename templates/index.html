@@ -1,1 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mars Info!</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container text-center">
+    <h1 class="jumbotron">Mission to Mars</h1>
+    <a href="/scrape"><button class="btn info" style = "background-color: rgb(73, 163, 236)">Scrape Mars Data</button></a>
+    
+    <div>      
+
+     
+  <div class="row">
+    
+      <div class="media">
+        <div class="media-body">
+          <h3><p style="text-align: left;">Latest Mars News</p></h3>
+          <h5 class="heading" style="text-align: left;">{{mars_data.news_title}}</h5>
+          <p style="text-align: left;">{{mars_data.news_p}}</p>
+          <hr class="my-4">
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+
+<div class="row">
+
+ 
+  <div class="col-md-8">
+    <h3><b>Featured Mars Image</b></h3>
+    <img src={{mars_data.featured_image_url}} height=auto width=750px>
+  </div>
+
+  
+  <div class="col-md-4">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h4><b>Current Weather on Mars</b></h4>
+            {{mars_data.mars_weather}}
+            <hr class="my-4">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+      <h4><b>Mars Facts</b></h4>
+      <div style="width: 400px; height: 200px; font-size: 12px;">
+          {{mars_data.mars_facts|safe}}
+      </div>
+        
+      
+      
+  
+</div>
+<br>
+
+
+  <div class="page-header">
+    <h2 class="text-center"><b>Mars Hemispheres</b></h2>
+    <br>
+  
+  
+  {% for hemisphere in mars_data.hemisphere_image_urls %}
+    <div class="col-md-6">
+      <div class="thumbnail">
+        <img src="{{hemisphere.img_url}}" style = "width: 100%;" >
+      <div class="caption">
+        <h4><b>{{hemisphere.title}}</b></h4>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+
+    </div>
+  </div>
+  </div>
+</body>
+
+</html>
